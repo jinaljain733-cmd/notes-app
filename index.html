@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid my-3 small">
+
+    <div class="row">
+        <div class="col">
+            <button type="button" id="add-note" class="btn btn-sm btn-primary">
+                Add Note
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-3" id="Notes"></div>
+
+</div>
+
+<script>
+const add_note_button = document.getElementById("add-note");
+const notesContainer = document.getElementById("Notes");
+
+// Load notes on page load
+window.onload = loadNotes;
+
+// Add note button
+add_note_button.addEventListener('click', () => {
+    createNote("Note Title", "Note Body");
+    saveNotes();
+});
+
+// Create note
+function createNote(title, body) {
+
+    const noteElement = document.createElement('div');
+    noteElement.classList.add('col-md-3');
+
+    noteElement.innerHTML = `
+        <div class="card mb-3 shadow">
+            <div class="card-header">
+                <span contenteditable="true">${title}</span>
+                <button type="button" class="btn-close float-end"></button>
+            </div>
+            <div class="card-body" contenteditable="true">
+                ${body}
+            </div>
+        </div>
+    `;
+
+    notesContainer.append(noteElement);
+
+    const cardHeader = noteElement.querySelector('.card-header span');
+    const cardBody = noteElement.querySelector('.card-body');
+    const closeButton = noteElement.querySelector('.btn-close');
+
+    // Auto save on edit
+    cardHeader.addEventListener('input', saveNotes);
+    cardBody.addEventListener('input', saveNotes);
+
+    // Delete note
+    closeButton.addEventListener('click', () => {
+        noteElement.remove();
+        saveNotes();
+    });
+}
+
+// Save notes to localStorage
+function saveNotes() {
+    const notes = [];
+
+    document.querySelectorAll('#Notes .card').forEach(card => {
+        const title = card.querySelector('.card-header span').innerText;
+        const body = card.querySelector('.card-body').innerText;
+
+        notes.push({ title, body });
+    });
+
+    localStorage.setItem('notes', JSON.stringify(notes));
+}
+
+// Load notes from localStorage
+function loadNotes() {
+    const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
+
+    savedNotes.forEach(note => {
+        createNote(note.title, note.body);
+    });
+}
+</script>
+
+</body>
+</html>
