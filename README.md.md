@@ -1,32 +1,56 @@
 # 📝 Notes App
 
-A lightweight, browser-based notes application built with pure HTML, Bootstrap, and JavaScript. No backend, no database — just your browser storing your notes forever.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=flat&logo=bootstrap&logoColor=white)
+![localStorage](https://img.shields.io/badge/localStorage-Persistent-orange?style=flat)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)
+
+A dynamic notes app built with HTML, CSS, Bootstrap 5 and JavaScript. Add, edit and delete notes with real-time auto-save using localStorage — your notes persist even after closing the browser. No backend required.
 
 ---
 
-## 🖥️ Live Preview
+## 🌐 Live Demo
 
-> Open `index.html` directly in any browser — no server needed.
+**[https://jinaljain733-cmd.github.io/notes-app/](https://jinaljain733-cmd.github.io/notes-app/)**
 
 ---
 
 ## ✨ Features
 
-- ➕ Add unlimited notes with one click
-- ✏️ Edit note title and body inline (click to type)
-- 🗑️ Delete any note instantly
-- 💾 Auto-save to **localStorage** — notes survive page refresh and browser close
-- 📱 Responsive grid layout — works on mobile, tablet, and desktop
+- Add new notes with one click
+- Edit note title and body directly in the card — `contenteditable`
+- Delete any note with the close button
+- Auto-saves every time you type — no save button needed
+- Notes persist in localStorage — survive browser refresh and close
+- Responsive grid layout — notes wrap on all screen sizes
+- Bootstrap card UI with shadow
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| HTML5 | Structure |
-| Bootstrap 5.3 | Layout & card styling |
-| Vanilla JavaScript | Logic & localStorage |
+| Technology | Usage |
+|---|---|
+| HTML5 | Page structure |
+| Bootstrap 5.3.8 | Card UI, grid, buttons — via jsDelivr CDN |
+| JavaScript (ES6+) | DOM manipulation, localStorage, event listeners |
+
+---
+
+## 🧠 JavaScript Concepts Used
+
+- `localStorage.setItem()` / `localStorage.getItem()` — persistent browser storage
+- `JSON.stringify()` / `JSON.parse()` — serialise notes to JSON for storage
+- `document.createElement()` — dynamically create note elements
+- `innerHTML` — inject Bootstrap card HTML into new elements
+- `contenteditable="true"` — make title and body directly editable
+- `addEventListener('input')` — auto-save on every keystroke
+- `addEventListener('click')` — delete note on close button click
+- `element.remove()` — delete note from DOM
+- `querySelectorAll().forEach()` — loop all notes to save them
+- `window.onload` — load saved notes when page opens
 
 ---
 
@@ -34,63 +58,34 @@ A lightweight, browser-based notes application built with pure HTML, Bootstrap, 
 
 ```
 notes-app/
-├── index.html      # Everything in one file (HTML + JS)
-├── .gitignore      # Git ignore rules
-└── README.md       # This file
+├── index.html       # App — HTML + Bootstrap + JS in one file
+└── README.md
 ```
 
 ---
 
-## 🚀 How to Run
+## 🚀 Getting Started
 
-**Option 1 — Direct open:**
-1. Download or clone this repo
-2. Double-click `index.html`
-3. Opens in your browser instantly ✅
+```bash
+git clone https://github.com/jinaljain733-cmd/notes-app.git
+cd notes-app
+open index.html
+```
 
-**Option 2 — VS Code Live Server:**
-1. Install the **Live Server** extension in VS Code
-2. Right-click `index.html` → **Open with Live Server**
-3. Opens at `http://127.0.0.1:5500`
+No install needed — Bootstrap loads from CDN automatically.
 
 ---
 
-## 📖 How It Works
-
-```
-Click "Add Note"
-      ↓
-New card appears with default title & body
-      ↓
-Click title or body to edit (auto-saves on every keystroke)
-      ↓
-Click ✕ to delete a note
-      ↓
-Refresh page → notes are still there (localStorage)
-```
-
----
-
-## 📦 localStorage Structure
-
-Notes are saved in the browser as:
-
-```json
-[
-  { "title": "My Note", "body": "This is the content" },
-  { "title": "Second Note", "body": "More content here" }
-]
-```
-
----
-
-## 🙋‍♂️ Author
+## 👤 Author
 
 **Jinal Jain**
 - GitHub: [@jinaljain733-cmd](https://github.com/jinaljain733-cmd)
+- LinkedIn: [linkedin.com/in/jinal-jain-08b70328b](https://linkedin.com/in/jinal-jain-08b70328b)
 
 ---
 
 ## 📄 License
 
-This project is open source and free to use for learning purposes.
+This project is open source and available under the [MIT License](LICENSE).
+
+> ⚠️ Please do not reuse or redistribute this project as your own work.
